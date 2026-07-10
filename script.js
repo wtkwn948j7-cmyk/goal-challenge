@@ -7,7 +7,7 @@ let x2Left = 1;
 let x5Left = 1;
 let currentPlayer = null;
 let usedPlayers = [];
-let gameMode = "classic";    // classic, survival, timeattack
+let gameMode = "classic";
 let timerInterval = null;
 let timeLeft = 60;
 let combo = 0;
@@ -102,7 +102,7 @@ startBtn.onclick = () => {
     if (timerInterval) clearInterval(timerInterval);
     timerInterval = setInterval(() => {
       timeLeft--;
-      document.getElementById("livesText").textContent = `⏱️ ${timeLeft}s  |  ❤️ ${lives}`;
+      updateUI();
       if (timeLeft <= 0) { endGame("⏰ TIME'S UP!"); }
     }, 1000);
   }
@@ -126,6 +126,7 @@ function nextPlayer() {
   currentPlayer = players[random];
   playerName.innerHTML = currentPlayer.name;
   playerImage.src = currentPlayer.image;
+  console.log("Current player:", currentPlayer.name); // Debug log
 }
 
 // --- Update UI ---
@@ -206,3 +207,5 @@ x5Btn.onclick = () => {
   x5Left--;
   addGoals(currentPlayer.club * 5);
 };
+
+console.log("✅ Game script loaded!");
