@@ -6,12 +6,12 @@
 }
 
 body{
-    background:linear-gradient(135deg,#07151d,#0d2d3c,#0d1117);
+    background:linear-gradient(135deg,#07151d,#0d2d3c,#101827);
+    color:white;
     min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    color:white;
 }
 
 .app{
@@ -22,62 +22,78 @@ body{
 
 #menu,
 #game{
-    background:#151f2b;
-    border-radius:20px;
+    background:#18222f;
+    border-radius:22px;
     padding:25px;
-    box-shadow:0 10px 30px rgba(0,0,0,.4);
+    box-shadow:0 12px 30px rgba(0,0,0,.45);
 }
 
 h1{
     text-align:center;
-    font-size:38px;
     margin-bottom:10px;
+    font-size:38px;
+}
+
+h2{
+    margin:18px 0 12px;
+    font-size:20px;
 }
 
 p{
     text-align:center;
-    color:#b5c5d3;
+    color:#b7c8d6;
 }
 
+.difficulty-grid,
 .goal-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:15px;
-    margin:30px 0;
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.difficulty,
+.goal{
+    height:60px;
+    border:none;
+    border-radius:15px;
+    cursor:pointer;
+    font-size:18px;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.difficulty{
+    background:#2d3748;
+    color:white;
 }
 
 .goal{
-    height:70px;
-    border:none;
-    border-radius:16px;
     background:#1fb56c;
     color:white;
-    font-size:24px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.25s;
 }
 
-.goal:hover{
-    transform:scale(1.05);
+.difficulty.selected{
+    background:#ff9800;
+    color:black;
 }
 
 .goal.selected{
     background:#ffd54f;
-    color:#111;
+    color:black;
 }
 
 #start{
     width:100%;
     height:60px;
     border:none;
-    border-radius:16px;
+    border-radius:18px;
     background:#2979ff;
     color:white;
     font-size:22px;
     font-weight:bold;
     cursor:pointer;
-    transition:.25s;
+    transition:.2s;
 }
 
 #start:hover{
@@ -85,43 +101,50 @@ p{
 }
 
 .top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
+    text-align:center;
+}
+
+#targetText{
+    font-size:26px;
+}
+
+#scoreText,
+#livesText,
+#boostText{
+    margin-top:8px;
 }
 
 .progress{
-    width:100%;
+    margin:20px 0;
     height:18px;
-    background:#2b2b2b;
-    border-radius:30px;
+    width:100%;
+    background:#2d3748;
+    border-radius:20px;
     overflow:hidden;
-    margin-bottom:25px;
 }
 
 #progressBar{
     width:0%;
     height:100%;
-    background:linear-gradient(90deg,#2ecc71,#00e5ff);
-    transition:.4s;
+    background:linear-gradient(90deg,#00e676,#00b0ff);
+    transition:.35s;
 }
 
 .player-card{
     text-align:center;
+    margin:20px 0;
 }
 
 .player-card img{
     width:220px;
     height:220px;
     object-fit:cover;
-    border-radius:20px;
-    background:#1e293b;
-    margin-bottom:15px;
+    border-radius:18px;
+    background:#243447;
 }
 
 .player-card h2{
-    margin-bottom:20px;
+    margin-top:15px;
 }
 
 .choices{
@@ -131,12 +154,12 @@ p{
 }
 
 .choices button{
+    height:55px;
     border:none;
     border-radius:14px;
-    height:55px;
     background:#2979ff;
     color:white;
-    font-size:17px;
+    font-size:16px;
     cursor:pointer;
     transition:.2s;
 }
@@ -145,24 +168,25 @@ p{
     transform:scale(1.03);
 }
 
+.choices button:disabled{
+    background:#555;
+    cursor:not-allowed;
+    opacity:.6;
+}
+
 @media(max-width:500px){
 
 .app{
-    padding:15px;
-}
-
-h1{
-    font-size:32px;
-}
-
-.goal{
-    height:65px;
-    font-size:22px;
+    padding:12px;
 }
 
 .player-card img{
-    width:190px;
-    height:190px;
+    width:180px;
+    height:180px;
+}
+
+h1{
+    font-size:30px;
 }
 
 }
