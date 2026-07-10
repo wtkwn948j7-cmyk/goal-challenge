@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚽ Goal Challenge – Ultimate</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <!-- MENU -->
+  <div id="menu">
+    <h1>⚽ Goal Challenge</h1>
+    <p>Choose your path to glory.</p>
+
+    <h2>🎯 Mode</h2>
+    <div class="mode-grid">
+      <button class="mode selected" data-mode="classic">Classic</button>
+      <button class="mode" data-mode="survival">Survival</button>
+      <button class="mode" data-mode="timeattack">⏱️ Time Attack</button>
+    </div>
+
+    <h2>📊 Difficulty</h2>
+    <div class="difficulty-grid">
+      <button class="difficulty selected" data-difficulty="easy">🟢 Easy</button>
+      <button class="difficulty" data-difficulty="medium">🟡 Medium</button>
+      <button class="difficulty" data-difficulty="hard">🟠 Hard</button>
+      <button class="difficulty" data-difficulty="impossible">🔴 Impossible</button>
+    </div>
+
+    <h2>🎯 Target</h2>
+    <div class="goal-grid">
+      <button class="goal selected" data-goal="1000">1000</button>
+      <button class="goal" data-goal="3000">3000</button>
+      <button class="goal" data-goal="5000">5000</button>
+      <button class="goal" data-goal="10000">10k</button>
+      <button class="goal" data-goal="20000">20k</button>
+    </div>
+
+    <button id="start">🚀 START</button>
+  </div>
+
+  <!-- GAME -->
+  <div id="game" style="display:none;">
+    <div class="top">
+      <h2 id="targetText"></h2>
+      <p id="scoreText"></p>
+      <p id="livesText"></p>
+      <p id="boostText">🔥 x2:1 | ⚡ x5:1</p>
+      <p id="modeDisplay" style="font-size:14px; opacity:0.8;"></p>
+    </div>
+
+    <div class="progress"><div id="progressBar"></div></div>
+
+    <div class="player-card">
+      <img id="playerImage" src="https://placehold.co/250x250/png?text=Loading" alt="player">
+      <h2 id="playerName">Loading...</h2>
+    </div>
+
+    <div class="choices">
+      <button id="clubBtn">🏟 Club</button>
+      <button id="countryBtn">🌍 Country</button>
+      <button id="uclBtn">🏆 UCL</button>
+      <button id="leagueBtn">🥇 League</button>
+      <button id="x2Btn">🔥 ×2</button>
+      <button id="x5Btn">⚡ ×5</button>
+    </div>
+  </div>
+</div>
+
+<script src="players.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
