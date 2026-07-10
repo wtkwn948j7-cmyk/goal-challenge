@@ -1,113 +1,211 @@
 let target = 1000;
 let score = 0;
 
+let difficulty = "easy";
+let lives = 15;
+
+let x2Left = 1;
+let x5Left = 1;
+
 let currentPlayer = null;
+let usedPlayers = [];
 
 const menu = document.getElementById("menu");
 const game = document.getElementById("game");
 
-const targetText = document.getElementById("targetText");
-const scoreText = document.getElementById("scoreText");
-const progressBar = document.getElementById("progressBar");
-
 const playerName = document.getElementById("playerName");
 const playerImage = document.getElementById("playerImage");
 
+const targetText = document.getElementById("targetText");
+const scoreText = document.getElementById("scoreText");
+const livesText = document.getElementById("livesText");
+const boostText = document.getElementById("boostText");
+const progressBar = document.getElementById("progressBar");
+
 const goalButtons = document.querySelectorAll(".goal");
+const diffButtons = document.querySelectorAll(".difficulty");
+
 const startBtn = document.getElementById("start");
 
-goalButtons.forEach(btn=>{
+const clubBtn = document.getElementById("clubBtn");
+const countryBtn = document.getElementById("countryBtn");
+const uclBtn = document.getElementById("uclBtn");
+const leagueBtn = document.getElementById("leagueBtn");
+const x2Btn = document.getElementById("x2Btn");
+const x5Btn = document.getElementById("x5Btn");
 
-btn.onclick=()=>{
+goalButtons.forEach(btn => {
 
-goalButtons.forEach(b=>b.classList.remove("selected"));
+    btn.onclick = () => {
 
-btn.classList.add("selected");
+        goalButtons.forEach(b => b.classList.remove("selected"));
 
-target=Number(btn.dataset.goal);
+        btn.classList.add("selected");
 
-}
+        target = Number(btn.dataset.goal);
 
-})
+    }
 
-startBtn.onclick=()=>{
+});
 
-menu.style.display="none";
+diffButtons.forEach(btn => {
 
-game.style.display="block";
+    btn.onclick = () => {
 
-score=0;
+        diffButtons.forEach(b => b.classList.remove("selected"));
 
-updateUI();
+        btn.classList.add("selected");
 
-nextPlayer();
+        difficulty = btn.dataset.difficulty;
 
-}
+        switch(difficulty){
 
-function randomPlayer(){
+            case "easy":
+                lives = 15;
+                break;
 
-return players[Math.floor(Math.random()*players.length)];
+            case "medium":
+                lives = 12;
+                break;
 
-}
+            case "hard":
+                lives = 10;
+                break;
+
+            case "impossible":
+                lives = 8;
+                break;
+
+        }
+
+    }
+
+});
+
+startBtn.onclick = () => {
+
+    menu.style.display = "none";
+
+    game.style.display = "block";
+
+    score = 0;
+
+    usedPlayers = [];
+
+    x2Left = 1;
+
+    x5Left = 1;
+
+    updateUI();
+
+    nextPlayer();
+
+};
 
 function nextPlayer(){
 
-currentPlayer=randomPlayer();
+    if(usedPlayers.length >= players.length){
 
-playerName.innerHTML=currentPlayer.name;
+        alert("🎉 خلصت كل اللاعبين!");
 
-playerImage.src=currentPlayer.image;
+        location.reload();
+
+        return;
+
+    }
+
+    let random;
+
+    do{
+
+        random = Math.floor(Math.random()*players.length);
+
+    }while(usedPlayers.includes(random));
+
+    usedPlayers.push(random);
+
+    currentPlayer = players[random];
+
+    playerName.innerHTML = currentPlayer.name;
+
+    playerImage.src = currentPlayer.image;
 
 }
 
 function updateUI(){
 
-scoreText.innerHTML=score+" / "+target;
+    targetText.innerHTML = "🎯 Target : " + target;
 
-targetText.innerHTML="🎯 Goal : "+target;
+    scoreText.innerHTML = "⚽ " + score + " / " + target;
 
-let percent=(score/target)*100;
+    livesText.innerHTML = "❤️ Lives : " + lives;
 
-if(percent>100) percent=100;
+    boostText.innerHTML = "🔥 x2: " + x2Left + " | ⚡ x5: " + x5Left;
 
-progressBar.style.width=percent+"%";
+    let percent = (score/target)*100;
+
+    if(percent>100) percent=100;
+
+    progressBar.style.width = percent + "%";
 
 }
-
-const buttons=document.querySelectorAll(".choices button");
-
-buttons[0].onclick=()=>addGoals(currentPlayer.club);
-
-buttons[1].onclick=()=>addGoals(currentPlayer.country);
-
-buttons[2].onclick=()=>addGoals(currentPlayer.ucl);
-
-buttons[3].onclick=()=>addGoals(currentPlayer.league);
-
-buttons[4].onclick=()=>addGoals(currentPlayer.club*2);
-
-buttons[5].onclick=()=>addGoals(currentPlayer.club*5);
 
 function addGoals(goals){
 
-score+=goals;
+    score += goals;
 
-updateUI();
+    lives--;
 
-if(score>=target){
+    updateUI();
 
-setTimeout(()=>{
+    if(score>=target){
 
-alert("🏆 You Win!");
+        alert("🏆 YOU WIN!");
 
-location.reload();
+        location.reload();
 
-},300);
+        return;
 
-return;
+    }
+
+    if(lives<=0){
+
+        alert("💀 GAME OVER");
+
+        location.reload();
+
+        return;
+
+    }
+
+    nextPlayer();
 
 }
 
-nextPlayer();
+clubBtn.onclick = ()=>addGoals(currentPlayer.club);
+
+countryBtn.onclick = ()=>addGoals(currentPlayer.country);
+
+uclBtn.onclick = ()=>addGoals(currentPlayer.ucl);
+
+leagueBtn.onclick = ()=>addGoals(currentPlayer.league);
+
+x2Btn.onclick = ()=>{
+
+    if(x2Left<=0) return;
+
+    x2Left--;
+
+    addGoals(currentPlayer.club*2);
+
+}
+
+x5Btn.onclick = ()=>{
+
+    if(x5Left<=0) return;
+
+    x5Left--;
+
+    addGoals(currentPlayer.club*5);
 
 }
