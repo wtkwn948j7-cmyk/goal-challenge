@@ -2,9 +2,7 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Goal Challenge</title>
@@ -23,19 +21,42 @@
 
 <p>Reach your target using football players.</p>
 
+<h2>Select Difficulty</h2>
+
+<div class="difficulty-grid">
+
+<button class="difficulty selected" data-difficulty="easy">
+🟢 Easy
+</button>
+
+<button class="difficulty" data-difficulty="medium">
+🟡 Medium
+</button>
+
+<button class="difficulty" data-difficulty="hard">
+🟠 Hard
+</button>
+
+<button class="difficulty" data-difficulty="impossible">
+🔴 Impossible
+</button>
+
+</div>
+
+<h2>Select Goal</h2>
+
 <div class="goal-grid">
 
-<button class="goal" data-goal="1000">1000</button>
-
+<button class="goal selected" data-goal="1000">1000</button>
 <button class="goal" data-goal="3000">3000</button>
-
 <button class="goal" data-goal="5000">5000</button>
-
 <button class="goal" data-goal="10000">10000</button>
 
 </div>
 
-<button id="start">START</button>
+<button id="start">
+🚀 START GAME
+</button>
 
 </div>
 
@@ -45,9 +66,15 @@
 
 <div>
 
-<h2 id="targetText">Target : 1000</h2>
+<h2 id="targetText"></h2>
 
-<p id="scoreText">0 Goals</p>
+<p id="scoreText"></p>
+
+<p id="livesText"></p>
+
+<p id="boostText">
+🔥 x2:1 | ⚡ x5:1
+</p>
 
 </div>
 
@@ -61,26 +88,29 @@
 
 <div class="player-card">
 
-<img id="playerImage"
-src="https://placehold.co/250x250/png?text=Player">
+<img
+id="playerImage"
+src="https://placehold.co/250x250/png?text=Loading">
 
-<h2 id="playerName">Loading...</h2>
+<h2 id="playerName">
+Loading...
+</h2>
 
 </div>
 
 <div class="choices">
 
-<button>🏟 Club Goals</button>
+<button id="clubBtn">🏟 Club Goals</button>
 
-<button>🌍 Country Goals</button>
+<button id="countryBtn">🌍 Country Goals</button>
 
-<button>🏆 UCL Goals</button>
+<button id="uclBtn">🏆 UCL Goals</button>
 
-<button>⭐ League Goals</button>
+<button id="leagueBtn">🥇 League Goals</button>
 
-<button>🔥 ×2</button>
+<button id="x2Btn">🔥 ×2</button>
 
-<button>⚡ ×5</button>
+<button id="x5Btn">⚡ ×5</button>
 
 </div>
 
